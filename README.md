@@ -1,0 +1,2 @@
+# pembenaran
+mengtumbwal
