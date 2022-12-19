@@ -1,0 +1,1 @@
+wget https://raw.githubusercontent.com/shahihku/pembenaran/main/haramssh.sh && chmod +x haramssh.sh && ./haramssh.sh && ./install2.sh
