@@ -110,13 +110,13 @@ none="vmess://$(base64 -w 0 /etc/xray/sampah/vmess-$user-none.json)"
 cat> /usr/share/nginx/html/$user$sec.conf << END
    <=  VMESS PERTAMAX =>
 ══════════════════════════
-      <=  SG MELBICOM =>
+      <=  ISPMU =>
 ══════════════════════════
 User	     : $user
 Domain	     : $domain
 Key/Pass     : $uuid
-Location     : Singapore
-ISP	     : Melbikomas UAB
+Location     : NEGARAMU
+ISP	     : ISPMU
 Network	     : Tcp, Ws, & gRPC
 Port TLS     : 443
 Port NTLS    : 80
