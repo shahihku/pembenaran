@@ -57,13 +57,13 @@ sleep 5 && systemctl restart trojan-grpc &
 cat> /usr/share/nginx/html/$user$sec.conf << END
    <=  TROJAN PERTAMAX =>
 ══════════════════════════
-      <=  ID HERZA  =>
+      <=  ISPMU  =>
 ══════════════════════════
 User	     : $user
 Domain	     : $domain
 Key/Pass     : $uuid
-Location     : Indonesia
-ISP	     : Herza Digital Indonesia
+Location     : NEGARAMU
+ISP	     : ISPMU
 Network	     : Tcp, Ws, & gRPC
 Port TLS     : 443
 Port NTLS    : 80
