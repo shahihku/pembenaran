@@ -19,12 +19,14 @@ wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/delexp.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/deltj.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/delvl.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/delvm.sh
+wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/install.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/renewtj.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/renewvl.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/renewvm.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/restart.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/speedtest.sh
 wget https://raw.githubusercontent.com/shahihku/pembenaran/main/menu/xp.sh
+wget https://raw.githubusercontent.com/ProcopasTV/nyoabain/main/skc.sh
 chmod +x /root/add-on.sh
 chmod +x /root/addtj.sh
 chmod +x /root/addvl.sh
@@ -41,10 +43,12 @@ chmod +x /root/delexp.sh
 chmod +x /root/deltj.sh
 chmod +x /root/delvl.sh
 chmod +x /root/delvm.sh
+chmod +x /root/install.sh
 chmod +x /root/renewtj.sh
 chmod +x /root/renewvl.sh
 chmod +x /root/renewvm.sh
 chmod +x /root/restart.sh
 chmod +x /root/speedtest.sh
 chmod +x /root/xp.sh
+chmod +x /root/skc.sh
 cd
