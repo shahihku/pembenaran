@@ -11,4 +11,7 @@ chmod +x /usr/bin/addssh
 chmod +x /usr/bin/cekssh
 chmod +x /usr/bin/delssh
 chmod +x /usr/bin/renewssh
+cd /root
+wget https://raw.githubusercontent.com/shahihku/pembenaran/main/sshsaja/install2.sh
+chmod +x install2.sh
 cd
