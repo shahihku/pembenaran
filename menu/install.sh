@@ -1,7 +1,4 @@
 #!/bin/bash
-#Nur_Alfiyaku
-#em0zz
-#IndoSSH
 read -p "Silahkan Masukan domain member anda : " domain
 read -p "Silahkan Masukan NSdomain slowdns : " nsdomain
 read -p "Silahkan Masukan Lapak anda : " author
