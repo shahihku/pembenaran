@@ -21,3 +21,4 @@ cp cekvm.sh $rekt/cekvm
 cp cekvl.sh $rekt/cekvl
 cp backup.sh $rekt/backup
 cp restart.sh $rekt/restart
+cp delexp.sh $rekt/delexp
