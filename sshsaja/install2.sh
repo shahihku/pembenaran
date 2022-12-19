@@ -161,15 +161,4 @@ sed -i '$ i\screen -dmS stunnel python /usr/local/bin/ws-stunnel' /etc/rc.local
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-cp addssh.sh /usr/bin/addssh
-cp delssh.sh /usr/bin/delssh
-cp cekssh.sh /usr/bin/cekssh
-cp renewssh.sh /usr/bin/renewssh
-cp delexp.sh /usr/bin/delexp
-cd /usr/bin
-chmod +x addssh
-chmod +x delssh
-chmod +x cekssh
-chmod +x renewssh
-chmod +x delexp
 cd
