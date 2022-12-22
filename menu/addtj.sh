@@ -55,44 +55,78 @@ sleep 5 && systemctl restart trojan-ws &
 sleep 5 && systemctl restart trojan-tcp &
 sleep 5 && systemctl restart trojan-grpc &
 cat> /usr/share/nginx/html/$user$sec.conf << END
-   <=  TROJAN PERTAMAX =>
-══════════════════════════
-      <=  ISPMU  =>
-══════════════════════════
-User	     : $user
-Domain	     : $domain
-Key/Pass     : $uuid
-Location     : NEGARAMU
-ISP	     : ISPMU
-Network	     : Tcp, Ws, & gRPC
-Port TLS     : 443
-Port NTLS    : 80
-Created      : $now
-Tcp/Gfw      : Yes
-Websocket    : /trojan
-gRPC	     : tr-grpc
-Quota        : Unlimited GB
-══════════════════════════
-Link Trojan Tcp/Gfw TLS
-=> $gfw
-══════════════════════════
-Link Trojan Websocket TLS
-=> $ws
-══════════════════════════
-Link Trojan gRPC TLS
-=> $grpc
-══════════════════════════
+══════════════════════════              
+    <=  TROJAN PERTAMAX =>       
+══════════════════════════                 
+    <=  By MahaVPN =>                 
+══════════════════════════                                  
 
-❗️MAX LOGIN USER STB (1 STB)
-❗️MAX LOGIN USER HP (2 HP)
-❗️NO VOUCHERAN & RT/RW NET
-❗️MELANGGAR = BANNED
+Username     : $user
+CITY         : NEGARAMU
+ISP          : ISPMU
+Host/IP      : $domain
+Port         : 443
+Key          : $uuid
+Network      : gfw, ws, grpc
+Path         : /trojan
+serviceName  : tr-grpc               
+  
+══════════════════════════                 
+Link Gfw  => ${gfw}
+══════════════════════════                 
+Link Ws   => ${ws}
+══════════════════════════                 
+Link Grpc => ${grpc}
+══════════════════════════                 
+     Expired => $exp
+══════════════════════════                 
+❗️MAX LOGIN USER STB (1 STB)                 
+❗️MAX LOGIN USER HP (2 HP)                 
+❗️NO VOUCHERAN & RT/RW NET                 
+❗️MELANGGAR = BANNED                 
+🤙MATUR TENGKYU TUWAN $user                 
+══════════════════════════                 
+    <=  Format Jadi =>    
 
-Thanks
-MahaVPN
+- name: ISPMU-WS-$exp
+  server: ISI_BUG
+  port: 443
+  type: trojan
+  password: $uuid
+  skip-cert-verify: true
+  sni: $domain
+  network: ws
+  ws-opts:
+    path: /trojan
+    headers:
+      Host: $domain
+  udp: true
+- name: ISPMU-WSS-$exp
+  server: ISI_BUG
+  port: 443
+  type: trojan
+  password: $uuid
+  network: ws
+  sni: $domain
+  skip-cert-verify: true
+  udp: true
+  ws-opts:
+    path: MAHA-CF:wss://$domain/trojan
+    headers:
+        Host: $domain
+- name: ISPMU-gRPC-$exp
+  server: ISI_BUG
+  port: 443
+  type: trojan
+  password: $uuid
+  skip-cert-verify: true
+  sni: $domain
+  network: grpc
+  grpc-opts:
+   grpc-service-name: tr-grpc
+  udp: true
 ══════════════════════════
-    EXPIRED => $exp
-══════════════════════════
+❗️NOTE: Format WSS Wajib Core Supp WSS
 END
 #!/bin/bash
 date=$(date)
