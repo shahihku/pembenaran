@@ -1,6 +1,4 @@
 #!/bin/bash
-#Nur_Alfiyaku
-#em0zz
 GREEN='\033[0;32m'
 PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
@@ -23,8 +21,6 @@ trojan_ws_status=$(systemctl status trojan-ws | grep running -o)
 trojan_grpc_status=$(systemctl status trojan-grpc | grep running -o)
 non_tls_status=$(systemctl status ntls | grep running -o)
 vless_ws_status=$(systemctl status vless-ws | grep running -o)
-vless_ws_opok_status=$(systemctl status vless-ws-opok | grep running -o)
-vless_ws_habis_status=$(systemctl status vless-ws-habis | grep running -o)
 vless_grpc_status=$(systemctl status vless-grpc | grep running -o)
 vmess_ws_status=$(systemctl status vmess-ws | grep running -o)
 vmess_ws_opok_status=$(systemctl status vmess-ws-opok | grep running -o)
@@ -52,18 +48,6 @@ if [[ $non_tls_status == "running" ]]; then
    swsovpn2=" ${GREEN}Running ${NC}( No Error )${NC}"
 else
    swsovpn2="${RED}  Not Running ${NC}  ( Error )${NC}"
-fi
-# STATUS SERVICE VLESS OPOK
-if [[ $vless_ws_opok_status == "running" ]]; then
-   swsovpn3=" ${GREEN}Running ${NC}( No Error )${NC}"
-else
-   swsovpn3="${RED}  Not Running ${NC}  ( Error )${NC}"
-fi
-# STATUS SERVICE VLESS KUOTA HABIS
-if [[ $vless_ws_habis_status == "running" ]]; then
-   swsovpn4=" ${GREEN}Running ${NC}( No Error )${NC}"
-else
-   swsovpn4="${RED}  Not Running ${NC}  ( Error )${NC}"
 fi
 # STATUS SERVICE WEBSOCKET OPEN OVPN
 if [[ $vless_grpc_status == "running" ]]; then
@@ -124,8 +108,6 @@ echo -e "\E[44;1;39m                $domain           \E[0m"
 echo -e "${CYAN}==========================================\033[0m${NC}"
 echo -e " * VLESS WS        :$swsovpn"
 echo -e " * NON TLS         :$swsovpn2"
-echo -e " * VLESS TSEL      :$swsovpn3"
-echo -e " * VLESS ORBIT     :$swsovpn4"
 echo -e " * VLESS GRPC      :$swsovpn1"
 echo -e " * TROJAN WS       :$sosslh"
 echo -e " * TROJAN GRRPC    :$sosslh1"
