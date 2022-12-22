@@ -45,58 +45,107 @@ exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-ws.json
 sed -i '/#xray$/a\#### '"$user$sec $exp"'\
-},{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-ws-opok.json
-sed -i '/#xray$/a\#### '"$user$sec $exp"'\
-},{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-ws-habis.json
-sed -i '/#xray$/a\#### '"$user$sec $exp"'\
 },{"id": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/vless-grpc.json
 ws="vless://${uuid}@${domain}:443?path=/vless&security=tls&encryption=none&type=ws#${user}"
 grpc="vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vl-grpc&sni=${domain}#${user}"
 ws-none="vless://${uuid}@${domain}:80?path=%2Fvless&security=none&encryption=none&host=$domain&type=ws#$user"
-ws-opok="vless://${uuid}@${domain}:80?path=%2Fworryfree&security=none&encryption=none&host=tsel.me&type=ws#$user"
-ws-habis="vless://${uuid}@${domain}:80?path=%2Fkuota-habis&security=none&encryption=none&host=myorbit.id&type=ws#$user"
 sleep 5 && systemctl restart vless-ws &
 sleep 5 && systemctl restart vless-grpc &
 cat> /usr/share/nginx/html/$user$sec.conf << END
-   <=  VLESS PERTAMAX =>
+══════════════════════════                 
+    <=  VLESS PERTAMAX =>       
+══════════════════════════                 
+    <=  By MahaVPN =>                 
+══════════════════════════ 
+                
+Username     : $user
+CITY         : NEGARAMU
+ISP          : ISPMU
+Host/IP      : $domain
+Port tls/ssl : 443
+Port non tls : 80               
+Key          : $uuid
+Network      : ws, grpc
+Path TLS     : /vless
+serviceName  : vl-grpc               
+  
+══════════════════════════                 
+Link Tls  => ${ws}
+══════════════════════════                 
+Link None => ${ws-none}
+══════════════════════════                 
+Link Grpc => ${grpc}
+══════════════════════════                 
+     Expired => $exp
+══════════════════════════                 
+❗️MAX LOGIN USER STB (1 STB)                 
+❗️MAX LOGIN USER HP (2 HP)                 
+❗️NO VOUCHERAN & RT/RW NET                 
+❗️MELANGGAR = BANNED                 
+🤙MATUR TENGKYU TUWAN $user                 
 ══════════════════════════
-      <=  ISPMU =>
-══════════════════════════
-User	     : $user
-Domain	     : $domain
-Key/Pass     : $uuid
-Location     : NEGARAMU
-ISP	     : ISPMU
-Network	     : Tcp, Ws, & gRPC
-Port TLS     : 443
-Port NTLS    : 80
-Created      : $now
-Quota        : Unlimited GB
-══════════════════════════
-WS Tls 	     : /vless
-WS Non Tls   : /vless
-gRPC 	     : vl-grpc
-══════════════════════════
-Link Vless Websocket TLS
-=> $ws
-══════════════════════════
-Link Vless Websocket NTLS
-=> $ws-none
-══════════════════════════
-Link Vless gRPC TLS
-=> $grpc
-══════════════════════════
+    <=  FORMAT JADI =>
 
-❗️MAX LOGIN USER STB (1 STB)
-❗️MAX LOGIN USER HP (2 HP)
-❗️NO VOUCHERAN & RT/RW NET
-❗️MELANGGAR = BANNED
-
-Thanks
-MahaVPN
+- name: ISPMU-WS-$exp
+  server: ISI_BUG
+  port: 443
+  type: vless
+  uuid: $uuid
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain
+  network: ws
+  ws-opts:
+    path: /vless
+    headers:
+      Host: $domain 
+  udp: true
+- name: ISPMU-WSS-$exp
+  server: ISI_BUG
+  port: 443
+  type: vless
+  uuid: $uuid
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain
+  network: ws
+  ws-opts:
+    path: MAHA-CF:wss://$domain/vless
+    headers:
+      Host: $domain 
+  udp: true
+- name: ISPMU-Ntls-$exp 
+  server: ISI_BUG 
+  port: 80
+  type: vless
+  uuid: $uuid 
+  cipher: auto
+  tls: false
+  skip-cert-verify: true
+  servername: $domain 
+  network: ws
+  ws-opts:
+    path: /vless
+    headers:
+      Host: $domain 
+  udp: true
+- name: ISPMU-gRPC-$exp 
+  server: ISI_BUG 
+  port: 443
+  type: vless
+  uuid: $uuid
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain 
+  network: grpc
+  grpc-opts:
+    grpc-service-name: vl-grpc
+  udp: true
 ══════════════════════════
-    EXPIRED => $exp
-══════════════════════════
+❗️NOTE: Format WSS Wajib Core Supp WSS
 END
 #!/bin/bash
 date=$(date)
