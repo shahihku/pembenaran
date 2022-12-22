@@ -170,28 +170,18 @@ cat> /etc/xray/trojan-tcp.json << END
             "xver": 1
           },
           {
-            "path": "/worryfree/",
+            "path": "/worryfree",
             "dest": 31234,
             "xver": 1
           },
           {
-            "path": "/kuota-habis/",
+            "path": "/kuota-habis",
             "dest": 31123,
             "xver": 1
           },
           {
             "path": "/vless",
             "dest": 31297,
-            "xver": 1
-          },
-          {
-            "path": "/worryfree",
-            "dest": 31233,
-            "xver": 1
-          },
-          {
-            "path": "/kuota-habis",
-            "dest": 31122,
             "xver": 1
           },
           {
@@ -310,86 +300,6 @@ cat> /etc/xray/vless-ws.json << END
   ]
 }
 END
-#create vless-ws-opok
-cat> /etc/xray/vless-ws-opok.json << END
-{
-  "log": {
-      "access": "/var/log/xray/vless.log",
-      "loglevel": "info"
-  },
-  "inbounds": [
-    {
-      "port": 31233,
-      "listen": "127.0.0.1",
-      "protocol": "vless",
-      "tag": "VLESSWS",
-      "settings": {
-        "clients": [
-          {
-            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
-#xray
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/worryfree"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
-#create vless-ws-habis
-cat> /etc/xray/vless-ws-habis.json << END
-{
-  "log": {
-      "access": "/var/log/xray/vless.log",
-      "loglevel": "info"
-  },
-  "inbounds": [
-    {
-      "port": 31122,
-      "listen": "127.0.0.1",
-      "protocol": "vless",
-      "tag": "VLESSWS",
-      "settings": {
-        "clients": [
-          {
-            "id": "eef46d87-ae46-d801-e0d4-6c87ae46d801"
-#xray
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "acceptProxyProtocol": true,
-          "path": "/kuota-habis"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-      {
-          "protocol": "freedom",
-          "tag": "direct"
-      }
-  ]
-}
-END
 #create vmess-ws
 cat> /etc/xray/vmess-ws.json << END
 {
@@ -455,7 +365,7 @@ cat> /etc/xray/vmess-ws-opok.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/worryfree/"
+          "path": "/worryfree"
         }
       }
     }
@@ -494,7 +404,7 @@ cat> /etc/xray/vmess-ws-habis.json << END
         "security": "none",
         "wsSettings": {
           "acceptProxyProtocol": true,
-          "path": "/kuota-habis/"
+          "path": "/kuota-habis"
         }
       }
     }
@@ -594,12 +504,12 @@ cat> /etc/xray/ntls.json << END
             "xver": 1
           },
           {
-            "path": "/worryfree/",
+            "path": "/worryfree",
             "dest": 31234,
             "xver": 1
           },
           {
-            "path": "/kuota-habis/",
+            "path": "/kuota-habis",
             "dest": 31123,
             "xver": 1
           },
@@ -609,13 +519,80 @@ cat> /etc/xray/ntls.json << END
             "xver": 1
           },
           {
+            "path": "/trojan",
+            "dest": 60002,
+            "xver": 1
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
+      }
+    }
+  ],
+  "outbounds": [
+      {
+          "protocol": "freedom",
+          "tag": "direct"
+      }
+  ]
+}
+END
+#create ntls 8080
+cat> /etc/xray/ntls-8080.json << END
+{
+  "log": {
+      "access": "/var/log/xray/trojan.log",
+      "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "trojan",
+      "tag": "TROJANTCP",
+      "settings": {
+        "clients": [
+          {
+            "password": "eef46d87-ae46-d801-e0d4-6c87ae46d801",
+            "flow": "xtls-rprx-direct",
+            "email": "trojan.ket-yt.xyz_VLESS_XTLS/TLS-direct_TCP"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "alpn": "h2",
+            "dest": 31302,
+            "xver": 0
+          },
+          {
+            "path": "/",
+            "dest": 700,
+            "xver": 1
+          },
+          {
+            "dest": 143,
+            "xver": 1
+          },
+          {
+            "path": "/vmess",
+            "dest": 31298,
+            "xver": 1
+          },
+          {
             "path": "/worryfree",
-            "dest": 31233,
+            "dest": 31234,
             "xver": 1
           },
           {
             "path": "/kuota-habis",
-            "dest": 31122,
+            "dest": 31123,
+            "xver": 1
+          },
+          {
+            "path": "/vless",
+            "dest": 31297,
             "xver": 1
           },
           {
@@ -773,6 +750,27 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#ntls 8080
+cat> /etc/systemd/system/ntls-8080.service << END
+[Unit]
+Description=Xray Service
+Documentation=https://github.com/xtls
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/xray run -config /etc/xray/ntls-8080.json
+Restart=on-failure
+RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target
+END
 #trojan-ws
 cat> /etc/systemd/system/trojan-ws.service << END
 [Unit]
@@ -836,48 +834,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
-#vless-ws-opok
-cat> /etc/systemd/system/vless-ws-opok.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vless-ws-opok.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
-#vless-ws-habis
-cat> /etc/systemd/system/vless-ws-habis.service << END
-[Unit]
-Description=Xray Service
-Documentation=https://github.com/xtls
-After=network.target nss-lookup.target
-
-[Service]
-User=nobody
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/local/bin/xray run -config /etc/xray/vless-ws-habis.json
-Restart=on-failure
-RestartPreventExitStatus=23
-LimitNPROC=10000
-LimitNOFILE=1000000
-
-[Install]
-WantedBy=multi-user.target
-END
+#vless-grpc
 cat> /etc/systemd/system/vless-grpc.service << END
 [Unit]
 Description=Xray Service
@@ -898,6 +855,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#vmess-ws
 cat> /etc/systemd/system/vmess-ws.service << END
 [Unit]
 Description=Xray Service
@@ -918,6 +876,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#vmess-opok
 cat> /etc/systemd/system/vmess-ws-opok.service << END
 [Unit]
 Description=Xray Service
@@ -938,6 +897,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#vmess-habis
 cat> /etc/systemd/system/vmess-ws-habis.service << END
 [Unit]
 Description=Xray Service
@@ -958,6 +918,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 END
+#vmess-grpc
 cat> /etc/systemd/system/vmess-grpc.service << END
 [Unit]
 Description=Xray Service
@@ -983,8 +944,6 @@ systemctl enable trojan-tcp
 systemctl enable trojan-ws
 systemctl enable trojan-grpc
 systemctl enable vless-ws
-systemctl enable vless-ws-opok
-systemctl enable vless-ws-habis
 systemctl enable vless-grpc
 systemctl enable vmess-ws
 systemctl enable vmess-ws-opok
