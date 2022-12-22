@@ -108,47 +108,105 @@ EOF
 vmess_base641=$( base64 -w 0 <<< $vmess_json1)
 none="vmess://$(base64 -w 0 /etc/xray/sampah/vmess-$user-none.json)"
 cat> /usr/share/nginx/html/$user$sec.conf << END
-   <=  VMESS PERTAMAX =>
+══════════════════════════                 
+    <=  VMESS PERTAMAX =>       
+══════════════════════════                 
+    <=  By MahaVPN =>                 
+══════════════════════════ 
+                
+Username     : $user
+CITY         : NEGARAMU
+ISP          : ISPMU
+Host/IP      : $domain
+Port ssl/tls : 443
+Port non tls : 80                                     
+Key          : $uuid
+Network      : ws, grpc
+Path         : /vmess
+Path 0P0K    : /kuota-habis, /worryfree                    
+serviceName  : vm-grpc               
+  
+══════════════════════════                 
+Link Tls  => ${ws}
+══════════════════════════                 
+Link None => ${none}
+══════════════════════════                 
+Link Grpc => ${grpc}
+══════════════════════════                 
+     Expired => $exp
+══════════════════════════                 
+❗️MAX LOGIN USER STB (1 STB)                 
+❗️MAX LOGIN USER HP (2 HP)                 
+❗️NO VOUCHERAN & RT/RW NET                 
+❗️MELANGGAR = BANNED                 
+🤙MATUR TENGKYU TUWAN $user                 
 ══════════════════════════
-      <=  ISPMU =>
-══════════════════════════
-User	     : $user
-Domain	     : $domain
-Key/Pass     : $uuid
-Location     : NEGARAMU
-ISP	     : ISPMU
-Network	     : Tcp, Ws, & gRPC
-Port TLS     : 443
-Port NTLS    : 80
-Created      : $now
-Quota        : Unlimited GB
-══════════════════════════
-WS Tls 	     : /vmess
-WS Non Tls   : /vmess
-Tsel-Opok    : /worryfree/
-Orbit-Opok   : /kuota-habis/
-gRPC 	     : vm-grpc
-══════════════════════════
-Link Vmess Websocket TLS
-=> $ws
-══════════════════════════
-Link Vmess Websocket None TLS
-=> $none
-══════════════════════════
-Link Vmess gRPC TLS
-=> $grpc
-══════════════════════════
+    <=  FORMAT JADI =>
 
-❗️MAX LOGIN USER STB (1 STB)
-❗️MAX LOGIN USER HP (2 HP)
-❗️NO VOUCHERAN & RT/RW NET
-❗️MELANGGAR = BANNED
-
-Thanks
-MahaVPN
+- name: ISPMU-WS-$exp
+  server: ISI_BUG
+  port: 443
+  type: vmess
+  uuid: $uuid
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain
+  network: ws
+  ws-opts:
+    path: /vmess
+    headers:
+      Host: $domain
+  udp: true
+- name: ISPMU-WSS-$exp
+  server: ISI_BUG
+  port: 443
+  type: vmess
+  uuid: $uuid
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain
+  network: ws
+  ws-opts:
+    path: MAHA-CF:wss://$domain/vmess
+    headers:
+      Host: $domain
+  udp: true
+- name: ISPMU-Ntls-$exp
+  server: ISI_BUG
+  port: 80
+  type: vmess
+  uuid: $uuid
+  alterId: 0
+  cipher: auto
+  tls: false
+  skip-cert-verify: true
+  servername: $domain
+  network: ws
+  ws-opts:
+    path: /worryfree
+    headers:
+      Host: $domain
+  udp: true
+- name: ISPMU-gRPC-$exp
+  server: ISI_BUG
+  port: 443
+  type: vmess
+  uuid: $uuid
+  alterId: 0
+  cipher: auto
+  tls: true
+  skip-cert-verify: true
+  servername: $domain
+  network: grpc
+  grpc-opts:
+    grpc-service-name: vm-grpc
+  udp: true
 ══════════════════════════
-    EXPIRED => $exp
-══════════════════════════
+❗️NOTE: Format WSS Wajib Core Supp WSS
 END
 #!/bin/bash
 date=$(date)
