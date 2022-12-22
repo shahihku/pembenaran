@@ -56,8 +56,6 @@ ws-none="vless://${uuid}@${domain}:80?path=%2Fvless&security=none&encryption=non
 ws-opok="vless://${uuid}@${domain}:80?path=%2Fworryfree&security=none&encryption=none&host=tsel.me&type=ws#$user"
 ws-habis="vless://${uuid}@${domain}:80?path=%2Fkuota-habis&security=none&encryption=none&host=myorbit.id&type=ws#$user"
 sleep 5 && systemctl restart vless-ws &
-sleep 5 && systemctl restart vless-ws-opok &
-sleep 5 && systemctl restart vless-ws-habis &
 sleep 5 && systemctl restart vless-grpc &
 cat> /usr/share/nginx/html/$user$sec.conf << END
    <=  VLESS PERTAMAX =>
@@ -77,8 +75,6 @@ Quota        : Unlimited GB
 ══════════════════════════
 WS Tls 	     : /vless
 WS Non Tls   : /vless
-Tsel-Opok    : /worryfree
-Orbit-Opok   : /kuota-habis
 gRPC 	     : vl-grpc
 ══════════════════════════
 Link Vless Websocket TLS
