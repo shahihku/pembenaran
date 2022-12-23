@@ -11,7 +11,9 @@ apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotool
 apt install iptables iptables-persistent -y
 apt install curl socat xz-utils wget apt-transport-https gnupg gnupg2 gnupg1 dnsutils lsb-release -y 
 apt install socat cron bash-completion ntpdate -y
-ipku=$(curl ipinfo.io/ip) 
+ip=$(curl ipinfo.io/ip)
+city=$(curl ipinfo.io/city)
+isp=$(curl ipinfo.io/org | cut -d ' ' -f 2-10)
 date
 #iptables
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
@@ -28,7 +30,9 @@ mkdir /etc/nur
 #send
 echo $domain >> /etc/xray/domain
 echo $nsdomain >> /etc/xray/nsdomain
-echo $ipku >> /etc/xray/public
+echo $ip >> /etc/xray/ip
+echo $city >> /etc/xray/city
+echo $isp >> /etc/xray/isp
 echo $resdomain >> /etc/xray/resdomain
 echo $author >> /etc/nur/author
 cp delexp.sh /usr/bin/delexp
