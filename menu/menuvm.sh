@@ -4,9 +4,9 @@ green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(cat /etc/xray/public)
 clear
-echo -e "\e[32m════════════════════════════════════════" | lolcat
+echo -e "\e[32m════════════════════════════════════════"
 echo -e "             ═══[Vmess MahaVPN]═══"
-echo -e "\e[32m════════════════════════════════════════" | lolcat
+echo -e "\e[32m════════════════════════════════════════"
 echo -e " 1)  Create Vmess M"
 echo -e " 2)  Create Vmess S"
 echo -e " 3)  Deleting Vmess Account"
