@@ -954,6 +954,7 @@ systemctl enable vmess-ws-opok
 systemctl enable vmess-ws-habis
 systemctl enable vmess-grpc
 systemctl enable ntls
+systemctl enable ntls-8080
 systemctl enable nginx
 systemctl disable xray
 #bin
