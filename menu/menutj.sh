@@ -7,8 +7,8 @@ clear
 echo -e "\e[32m════════════════════════════════════════" | lolcat
 echo -e "             ═══[Trojan MahaVPN]═══"
 echo -e "\e[32m════════════════════════════════════════" | lolcat
-echo -e " 1)  Create Trojan S"
-echo -e " 2)  Create Trojan M"
+echo -e " 1)  Create Trojan M"
+echo -e " 2)  Create Trojan S"
 echo -e " 3)  Deleting Trojan Account"
 echo -e " 4)  Renew Trojan Account"
 echo -e " 5)  Check User Login Trojan"
