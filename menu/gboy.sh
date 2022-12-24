@@ -16,6 +16,13 @@ NC='\e[0m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 LIGHT='\033[0;37m'
+
+run_back() {
+echo ""
+read -p "Pres Enter kembali ke HOME : " jejeje        
+gboy    
+}
+
 # VPS Information
 #Domain
 domain=$(cat /etc/xray/domain)
@@ -57,5 +64,5 @@ case $opt in
 4) clear ; menusys ;;
 5) clear ; cek-service ; run_back ;;
 6) exit ;;
-*) echo "Anda salah tekan " ; sleep 1 ; funny ;;
+*) echo "Anda salah tekan " ; sleep 1 ; gboy ;;
 esac
