@@ -17,9 +17,9 @@ echo -e "\e[1;32m═════════════════════
 echo -e " x)   MENU UTAMA"
 echo -e "\e[1;32m══════════════════════════════════════════\e[m"
 echo -e ""
-read -p "     Please Input Number  [1-5 or x] :  "  gboy
+read -p "     Please Input Number  [1-5 or x] :  "  menu
 echo -e ""
-case $gboy in
+case $menu in
 1)
 add-trojan
 ;;
