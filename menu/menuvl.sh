@@ -7,8 +7,8 @@ clear
 echo -e "\e[32m════════════════════════════════════════" | lolcat
 echo -e "             ═══[Vless MahaVPN]═══"
 echo -e "\e[32m════════════════════════════════════════" | lolcat
-echo -e " 1)  Create Vless S"
-echo -e " 2)  Create Vless M"
+echo -e " 1)  Create Vless M"
+echo -e " 2)  Create Vless S"
 echo -e " 3)  Deleting Vless Account"
 echo -e " 4)  Renew Vless Account"
 echo -e " 5)  Check User Login Vless"
