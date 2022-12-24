@@ -2,7 +2,7 @@
 run_back() {
 echo ""
 read -p "Pres Enter kembali ke HOME : " jejeje        
-funny    
+gboy    
 }
 
 clear
