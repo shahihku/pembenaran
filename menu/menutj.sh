@@ -4,9 +4,9 @@ green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(cat /etc/xray/public)
 clear
-echo -e "\e[32m════════════════════════════════════════" | lolcat
+echo -e "\e[32m════════════════════════════════════════"
 echo -e "             ═══[Trojan MahaVPN]═══"
-echo -e "\e[32m════════════════════════════════════════" | lolcat
+echo -e "\e[32m════════════════════════════════════════"
 echo -e " 1)  Create Trojan M"
 echo -e " 2)  Create Trojan S"
 echo -e " 3)  Deleting Trojan Account"
