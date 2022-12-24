@@ -1,6 +1,18 @@
 #!/bin/bash
 rekt="/usr/bin"
 chmod +x *.sh
+cp add-domain.sh $rekt/add-domain
+cp add-trojan.sh $rekt/add-trojan
+cp add-vless.sh $rekt/add-vless
+cp add-vmess.sh $rekt/add-vmess
+cp gboy.sh $rekt/gboy
+cp menusys.sh $rekt/menusys
+cp menutj.sh $rekt/menutj
+cp menuvl.sh $rekt/menuvl
+cp menuvm.sh $rekt/menuvm
+cp renewtj.sh $rekt/renewtj
+cp renewvl.sh $rekt/renewvl
+cp renewvm.sh $rekt/renewvm
 cp addtj.sh $rekt/addtj
 cp addvl.sh $rekt/addvl
 cp addvm.sh $rekt/addvm
