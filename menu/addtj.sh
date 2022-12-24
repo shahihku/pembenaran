@@ -1,146 +1,89 @@
 #!/bin/bash
-#Rohmaniyah
-#nama IP EXP
-RED='\033[0;31m'
-NC='\033[0m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHT='\033[0;37m'
-domainku=$(cat /etc/xray/domain)
-#sec=$(date +%M%S)
+domain=$(cat /etc/xray/domain)
 uuid=$(uuid)
-MYIP=$(cat /etc/xray/public)
-clear
-read -p "Silahkan masukan username : " user
-read -p "Silahkan masukan masaaktif : " masaaktif
-read -p "SIlahkan masukan email pelanggan : " reseler
-user2=$(echo "$reseler" | wc -w)
-if [[ $user2 -gt 0 ]]; then
-echo ""
-else
-nais123="123"
-fi
-makanan=$(cat /etc/xray/domain.log | grep $reseler | cut -d " " -f 2)
-user1=$(cat /etc/xray/domain.log | grep $reseler -o)
-if [[ $user1 == "$reseler$nais123" ]]; then
-domain="$makanan"
-else
-domain="$domainku"
-fi
-akun=$(cat /etc/xray/trojan-ws.json | grep $user -o | uniq | wc -l)
+#MASUKAN
+run_masukan() {
+read -p "Username         : " user
+read -p "Masaaktif        : " masaaktif
+}
+
+#CEK_USER        
+run_cek_user() {        
+akun=$(cat /etc/xray/trojan-grpc.json | grep $user -o | uniq | wc -l)
 if [ $akun = 0 ]; then
 clear
-echo -e "user belum terdaftar (sah)"
+echo > /dev/null
 else
 clear
 echo -e "user telah digunakan"
 echo -e "silahkan gunakan nama user lain"
 exit
 fi
+}
+
+#WRITE_JSON
+run_write_json() {            
 now=`date -d "0 days" +"%Y-%m-%d"`
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-sed -i '/#xray$/a\#### '"$user$sec $exp"'\
-},{"password": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/trojan-tcp.json
-sed -i '/#xray$/a\#### '"$user$sec $exp"'\
-},{"password": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/trojan-ws.json
-sed -i '/#xray$/a\#### '"$user$sec $exp"'\
-},{"password": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/trojan-grpc.json
-gfw="trojan://${uuid}@${domain}:443"
+sed -i '/#xray$/a\#### '"$user $exp"'\
+},{"password": "'""$uuid""'","email": "'""$user$sec""'"' /etc/xray/trojan*
+gfw="trojan://${uuid}@${domain}:443"             
 ws="trojan://${uuid}@${domain}:443?path=/trojan&security=tls&host=${domain}&type=ws&sni=${domain}#${user}"
-grpc="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=tr-grpc&sni=${domain}#${user}"
-sleep 5 && systemctl restart trojan-ws &
-sleep 5 && systemctl restart trojan-tcp &
-sleep 5 && systemctl restart trojan-grpc &
-cat> /usr/share/nginx/html/$user$sec.conf << END
-══════════════════════════              
-    <=  TROJAN PERTAMAX =>       
-══════════════════════════                 
-    <=  By MahaVPN =>                 
-══════════════════════════                                  
+grpc="trojan://${uuid}@${domain}:443?mode=gun&security=tls&type=grpc&serviceName=tr-grpc&sni=${domain}#${user}"                
+#sleep 15 && systemctl restart trojan-tcp &
+sleep 15 && systemctl restart trojan-ws &
+sleep 15 && systemctl restart trojan-grpc &                
+clear
+}
+           
+           
+#OUTPUT_AKUN
+run_output_akun() {                 
+echo -e "══════════════════════════"                 
+echo -e "    <=  TROJAN PERTAMAX =>"       
+echo -e "══════════════════════════"                 
+echo -e "    <=  By MahaVPN =>"                 
+echo -e "══════════════════════════"                                  
+echo -e ""
+echo -e "Username     : $user"
+echo -e "CITY         : $(cat /etc/xray/city)"
+echo -e "ISP          : $(cat /etc/xray/isp)"
+echo -e "Host/IP      : $domain"
+echo -e "Port         : 443"
+echo -e "Key          : $uuid"
+echo -e "Network      : gfw, ws, grpc"
+echo -e "Path         : /trojan"
+echo -e "serviceName  : tr-grpc"               
+echo -e ""  
+echo -e "══════════════════════════"                 
+echo -e "Link Gfw  => ${gfw}"
+echo -e "══════════════════════════"                 
+echo -e "Link Ws   => ${ws}"
+echo -e "══════════════════════════"                 
+echo -e "Link Grpc => ${grpc}"
+echo -e "══════════════════════════"                 
+echo -e "     Expired => $exp"
+echo -e "══════════════════════════"                 
+echo -e "❗️MAX LOGIN USER STB (1 STB)"    
+echo -e "  Note: Max 7 user tersambung ke STB"             
+echo -e "❗️MAX LOGIN USER HP (2 HP)"                 
+echo -e "❗️NO VOUCHERAN & RT/RW NET"                 
+echo -e "❗️MELANGGAR = BANNED"                 
+echo -e "🤙MATUR TENGKYU TUWAN $user"                 
+echo -e "══════════════════════════"                 
+}
 
-Username     : $user
-CITY         : NEGARAMU
-ISP          : ISPMU
-Host/IP      : $domain
-Port         : 443
-Key          : $uuid
-Network      : gfw, ws, grpc
-Path         : /trojan
-serviceName  : tr-grpc               
-  
-══════════════════════════                 
-Link Gfw  => ${gfw}
-══════════════════════════                 
-Link Ws   => ${ws}
-══════════════════════════                 
-Link Grpc => ${grpc}
-══════════════════════════                 
-     Expired => $exp
-══════════════════════════                 
-❗️MAX LOGIN USER STB (1 STB)                 
-❗️MAX LOGIN USER HP (2 HP)                 
-❗️NO VOUCHERAN & RT/RW NET                 
-❗️MELANGGAR = BANNED                 
-🤙MATUR TENGKYU TUWAN $user                 
-══════════════════════════                 
-    <=  Format Jadi =>    
+run_tele() {
+telegram-send --pre "$(run_output_akun)"                        
+}   
+   
+#execute    
+run_masukan
+run_cek_user
+run_write_json   
+run_output_akun
+run_tele > /dev/null &            
 
-- name: ISPMU-WS-$exp
-  server: ISI_BUG
-  port: 443
-  type: trojan
-  password: $uuid
-  skip-cert-verify: true
-  sni: $domain
-  network: ws
-  ws-opts:
-    path: /trojan
-    headers:
-      Host: $domain
-  udp: true
-- name: ISPMU-WSS-$exp
-  server: ISI_BUG
-  port: 443
-  type: trojan
-  password: $uuid
-  network: ws
-  sni: $domain
-  skip-cert-verify: true
-  udp: true
-  ws-opts:
-    path: MAHA-CF:wss://$domain/trojan
-    headers:
-        Host: $domain
-- name: ISPMU-gRPC-$exp
-  server: ISI_BUG
-  port: 443
-  type: trojan
-  password: $uuid
-  skip-cert-verify: true
-  sni: $domain
-  network: grpc
-  grpc-opts:
-   grpc-service-name: tr-grpc
-  udp: true
-══════════════════════════
-❗️NOTE: Format WSS Wajib Core Supp WSS
 END
-#!/bin/bash
-date=$(date)
-domain=$(cat /etc/xray/domain)
-cd /etc/nur
-now=`date -d "0 days" +"%d-%m-%y"`
 zip ${domain}-${now}.zip /etc/xray/*.json
 telegram-send --file ${domain}-${now}.zip --caption "${date}"
-#clear
-#echo -e "======> INFORMASI ACCOUNT <======="
-#echo -e "        ↡↡↡↡↡        ↡↡↡↡↡ "
-#echo -e "https://$domain/$user$sec.conf"
-#echo -e "        ↟↟↟↟↟        ↟↟↟↟↟ "
-#echo -e "=================================="
-akun=$(cat /usr/share/nginx/html/$user$sec.conf)
-clear
-echo -e "${akun}"
