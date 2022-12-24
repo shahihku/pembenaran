@@ -40,11 +40,11 @@ echo -e "\e[33m UPTIME        \e[0m:  $uptime"
 echo -e "\e[33m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "                 • SCRIPT MENU •                 "
 echo -e "\e[33m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e " [\e[36m•2\e[0m] Vmess Menu"
-echo -e " [\e[36m•3\e[0m] Vless Menu"
-echo -e " [\e[36m•4\e[0m] Trojan Menu"
-echo -e " [\e[36m•5\e[0m] System Menu"
-echo -e " [\e[36m•7\e[0m] Status Service"
+echo -e " [\e[36m•1\e[0m] Vmess Menu"
+echo -e " [\e[36m•2\e[0m] Vless Menu"
+echo -e " [\e[36m•3\e[0m] Trojan Menu"
+echo -e " [\e[36m•4\e[0m] System Menu"
+echo -e " [\e[36m•5\e[0m] Status Service"
 echo -e ""
 echo -e " [\e[36m•x\e[0m] Close Panel"
 echo -e   ""
@@ -54,8 +54,8 @@ case $opt in
 1) clear ; menuvm ;;
 2) clear ; menuvl ;;
 3) clear ; menutj ;;
-3) clear ; menusys ;;
-4) clear ; cek-service ; run_back ;;
-5) exit ;;
+4) clear ; menusys ;;
+5) clear ; cek-service ; run_back ;;
+6) exit ;;
 *) echo "Anda salah tekan " ; sleep 1 ; funny ;;
 esac
