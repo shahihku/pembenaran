@@ -16,6 +16,7 @@ echo -e ""
 echo -e "Starting Restart All Service"
 systemctl restart xray.service
 systemctl restart ntls
+systemctl restart ntls-8080
 systemctl restart trojan-ws
 systemctl restart trojan-grpc
 systemctl restart trojan-tcp
@@ -23,8 +24,6 @@ systemctl restart vmess-ws
 systemctl restart vmess-ws-opok
 systemctl restart vmess-ws-habis
 systemctl restart vless-ws
-systemctl restart vless-ws-opok
-systemctl restart vless-ws-habis
 systemctl restart vless-grpc
 systemctl restart vmess-grpc
 /etc/init.d/ssh restart
